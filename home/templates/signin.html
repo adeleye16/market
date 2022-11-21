@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} | Signin {% endblock title %}
+
+<!-- header -->
+{% block header %} {% include 'header.html' %} {% endblock header %}
+<!-- header done -->
+  
+<!-- carousel -->
+{% block carousel %}
+    {% include 'carousel.html' %}
+{% endblock carousel %}
+<!-- carousel done -->
+
+<!-- content -->
+{% block content %}
+<div class="container mt-5 mb-5">
+  <h2 class="name text-center text-capitalize">signin</h2>
+  <div class="row justify-content-center">
+    <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3"></div>
+    <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+      <div class="show-hide">
+        <div class="cform">
+          <div class="ccform">
+           <form action= "{% url 'signin' %}" method="POST">
+            {% csrf_token %}
+             <div class="mb-3">
+               <label for="exampleInputEmail1" class="form-label">Username</label>
+               <input type="text" name="username" class="form-control" id="exampleInputText1" aria-describedby="emailHelp">
+             </div>
+            <div class="mb-3">
+               <label for="exampleInputPassword1" class="form-label">Password</label>
+               <input type="password" name="password" class="form-control grab" id="exampleInputPassword1">
+              <div class="show">
+                <i class="fas fa-eye"></i>
+                <i class="fas fa-eye-slash"></i>
+              </div>
+            </div>
+
+            <!-- <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            <button type="submit" class="btn btn-primary">Signin</button>
+            <a href="{% url 'signup' %}" class="btn btn-info">Signup</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3"></div>
+</div>
+</div>
+
+{% endblock content %}
+
+<!-- content done -->
+
+{% block footer %}  {% include 'footer.html' %}   {% endblock footer %}

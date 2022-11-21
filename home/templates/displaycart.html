@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block title %} | Displaycart {% endblock title %}
+<!-- header -->
+{% block header %} {% include 'header.html' %} {% endblock header %}
+<!-- header done -->
+  
+<!-- carousel -->
+{% block carousel %}
+    {% include 'carousel.html' %}
+{% endblock carousel %}
+<!-- carousel done -->
+
+<!-- content -->
+{% block content %}
+
+<div class="container mb-5 mt-5">
+  <h2 class="text-center text-capitalize latest text-dark">{{profile.user.username}}'s  Shopcart</h2>
+  <div class="table-responsive table-box">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Delete</th>
+          <th scope="col">Product</th>
+          <th scope="col">Image</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Update</th>
+          <th scope="col">Price</th>
+          <th scope="col">Amount</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        
+
+         
+
+        {% if trolley %}
+          {% for items in trolley %}
+            <tr>
+              <th scope= "row">
+                <form action ="{% url 'deleteitem' %}" method="POST">
+                {% csrf_token %}
+                  <input type= "hidden" name="item_id" value="{{items.id}}">
+                  <button type = "submit" onclick="return confirm('Are you sure you want to delete this cart?....')"><i class="fa-solid fa-trash-can"></i></button>
+                </form>
+              </th>
+
+              <td>{{items.title_g}}</td>
+              <td><img src="{{items.product.img_r.url}}" width="50px" height="50px" alt=""></td>
+              <td>{{items.quantity}}</td>
+              <td>
+                <form action ="{% url 'change' %}" method="POST">
+                {% csrf_token %}
+                  <input type="hidden" name="item_id" value="{{items.id}}">
+                  <input type="number" name="quant" min="{{items.min_quantity}}" value="1" max="{{items.max_quantity}}" width="30px" height="20px">
+                  <button type="submit" onclick="return confirm('Are you sure you want to modify this item from your cart?....')"><i class="fas fa-check-circle"></i></button>
+                </form> 
+              </td>
+              <td>${{items.price|floatformat:2|intcomma}}</td>
+              <td>${{items.amount}}</td>
+            </tr>
+           {% endfor %}
+         {% endif %}
+        
+         
+              
+      </tbody>
+   </table>
+              
+         
+        
+
+    <div class="table">
+      <table>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Subtotal:{{subtotal|floatformat:2|intcomma}}</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>vat(7.5%):{{vat|floatformat}}</td>
+        </tr>
+ 
+        
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total:{{total|floatformat:2|intcomma}} </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a href="{% url 'checkout' %}" class="btn  btn-info">Checkout</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- content done -->
+
+{% block footer %}  {% include 'footer.html' %}   {% endblock footer %}

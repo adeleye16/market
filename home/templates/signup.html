@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %} | Signup {% endblock title %}
+
+<!-- header -->
+{% block header %} {% include 'header.html' %} {% endblock header %}
+<!-- header done -->
+  
+<!-- carousel -->
+{% block carousel %}
+    {% include 'carousel.html' %}
+{% endblock carousel %}
+<!-- carousel done -->
+
+<!-- content -->
+{% block content %}
+<div class="container mt-5 mb-5">
+  <h2 class="name text-center text-capitalize">Signup</h2>
+  <div class="row justify-content-center">
+    <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3"></div>
+    <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+      <div class="cform">
+        <div class="ccform">
+          <form action= "{% url 'signup' %}" method= "POST">
+          {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputText1" class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" placeholder="username" id="exampleInputText1" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputText2" class="form-label">First Name</label>
+              <input type="text" name="first_name" class="form-control" placeholder="first name" id="exampleInputText2" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputText3" class="form-label">Last Name</label>
+              <input type="text" name="last_name" class="form-control" placeholder="lastname" id="exampleInputText3" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email Address</label>
+              <input type="email" name="email" class="form-control"  placeholder="emailaddress" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputText4" class="form-label">Phone Number</label>
+              <input type="text" name="phone" class="form-control" placeholder="phone number" id="exampleInputText4" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputText5" class="form-label">Gender</label>
+              <input type="text" name="gender" class="form-control" placeholder="home address" id="exampleInputText5" aria-describedby="emailHelp">
+            </div>
+  
+            <div class="mb-3">
+              <label for="exampleInputText5" class="form-label">Home Address</label>
+              <input type="text" name="address" class="form-control" placeholder="home address" id="exampleInputText5" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputText5" class="form-label">Nationality</label>
+              <input type="text" name="nationality" class="form-control" placeholder="home address" id="exampleInputText5" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputText6" class="form-label">State</label>
+              <input type="text" name="state" class="form-control" placeholder="state" id="exampleInputText6" aria-describedby="emailHelp">
+              <input type="hidden" name="pix" value="pix/avatar.jpg" class="form-control" id="exampleInputText7" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="password1" class="form-control password" id="exampleInputPassword1">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+              <input type="password" name="password2" class="form-control" placeholder="confirm password" id="exampleInputPassword2">
+            </div>
+            <!-- <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            <button type="submit" class="btn btn-primary">Signup</button>
+            <a href="{% url 'signin' %}" class="btn btn-info">Signin</a>
+          </form>
+        </div>
+      </div>
+</div>
+<div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3"></div>
+</div>
+</div> 
+
+{% endblock content %}
+
+<!-- content done -->
+
+{% block footer %}  {% include 'footer.html' %}   {% endblock footer %}

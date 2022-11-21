@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %} | History {% endblock title %}
+
+<!-- header -->
+{% block header %} {% include 'header.html' %} {% endblock header %}
+<!-- header done -->
+  
+<!-- carousel -->
+{% block carousel %}
+    {% include 'carousel.html' %}
+{% endblock carousel %}
+<!-- carousel done -->
+
+<!-- content -->
+{% block content %}
+
+<div class="container mb-5 mt-5">
+  <h2 class="text-center text-capitalize latest text-dark">{{profile.user.username}}'s  Shopcart</h2>
+  <div class="table-responsive table-box">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if trolley %}
+          {% for items in trolley %}
+            <tr>
+              <td>{{items.product.title_r}}</td>
+              <td>${{items.quantity}}</td>
+              <td>${{items.price|floatformat:2|intcomma}}</td>
+              <td>${{items.amount|floatformat:2|intcomma}}</td>
+            </tr>
+           {% endfor %}
+         {% endif %}
+         
+         
+              
+      </tbody>
+   </table>
+              
+         
+        
+
+    <div class="table">
+      <table>
+        
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total:{{total|floatformat:2|intcomma}} </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- content done -->
+
+{% block footer %}  {% include 'footer.html' %}   {% endblock footer %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} | Category {% endblock title %}
+
+<!-- header -->
+{% block header %} {% include 'header.html' %} {% endblock header %}
+<!-- header done -->
+  
+<!-- carousel -->
+{% block carousel %}
+    {% include 'carousel.html' %}
+{% endblock carousel %}
+<!-- carousel done -->
+
+<!-- content -->
+{% block content %}
+
+<div class="container mt-5 mb-5 bg-secondary">
+  <h2 class="text-center text-capitalize latest">All Categories</h2>
+  <div class="row justify-content-center">
+    {% if category %}
+        {% for items in category %}    
+          <div class="col-10 col-sm-10 col-md-5 col-lg-3 col-xl-3">
+            <div class="card">
+              <img src="{{items.img_r.url}}" class="card-img-top imgg" alt="...">
+              <div class="like"></div>
+              <div class="card-body">
+                <h5 class="card-title">{{items.title_r}}</h5>
+                <h5 class="card-title">{{items.price}}</h5>
+                <h5 class="card-title">{{items.size}}</h5>
+                <p class="card-text">{{items.description}}</p>
+                <a href="{% url 'details' items.id %}" class="btn btn-primary">Product details</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    {% endif %}
+
+  </div>
+</div>
+{% endblock content %}
+
+<!-- content done -->
+
+{% block footer %}  {% include 'footer.html' %}   {% endblock footer %}
